@@ -50,5 +50,3 @@ fi
 PID4=$!
 wait $PID4
 echo "Exit Status: $?"
-#
-jupyter-notebook & >> token.log
