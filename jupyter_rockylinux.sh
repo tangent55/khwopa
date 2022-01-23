@@ -10,23 +10,31 @@ PID1=$!
 wait $PID1
 echo "Exit Status: $?"
 ##
-## The following line installs python version 3.9.
-yum -y install python39
+## The following line installs python version 3.9 & ssh server.
+yum -y install python39 openssh-server
 PID2=$!
 wait $PID2
 echo "Exit Status: $?"
 ##
-## The following line ensures that pip is installed.
-python3 -m ensurepip
+##
+## The following line enables & starts ssh.
+systemctl enable --now sshd
 PID3=$!
 wait $PID3
+echo "Exit STatus $?"
+##
+##
+## The following line ensures that pip is installed.
+python3 -m ensurepip
+PID4=$!
+wait $PID4
 echo "Exit Status: $?"
 ##
 ##
 ## The following line installs jupyter through pip.
 pip3 install --no-cache-dir jupyter
-PID4=$!
-wait $PID4
+PID5=$!
+wait $PID5
 echo "Exit Status: $?"
 
 notebooks=/root/notebooks
@@ -53,6 +61,6 @@ c.NotebookApp.open_browser = False
 c.NotebookApp.notebook_dir = '/root/notebooks'" >> /root/.jupyter/jupyter_notebook_config.py
 fi
 
-PID5=$!
-wait $PID5
+PID6=$!
+wait $PID6
 echo "Exit Status: $?"
