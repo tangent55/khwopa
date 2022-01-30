@@ -5,7 +5,7 @@
 ## want to make changes in script.
 ##
 ## The following line updates & upgrades the system.
-yum update && yum -y upgrade-minimal
+yum -y update && yum -y upgrade-minimal
 PID1=$!
 wait $PID1
 echo "Exit Status: $?"
